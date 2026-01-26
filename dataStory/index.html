@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://use.typekit.net/wes8iih.css">
+    <script defer type = "module" src="index.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/enter-view@1.0.0/enter-view.min.js"></script>
+    <script src="https://unpkg.com/stickyfilljs@2.0.5/dist/stickyfill.js"></script>
+    <title>Is the NBA pay to win?</title>
+    
+    <icon></icon>
+</head>
+<body>
+    <nav></nav>
+    <div class = "title">
+        <h1>Is the NBA <span class="money-text"> pay to win?</span></h1>
+        <h3>
+            An exploration into NBA salary expectations.
+        </h3>
+        <h5>A Visual Data Story By Eli Jordan</h5>
+    </div>
+    <p style="font-size: large;">Most NBA teams have the goal of winning the most number of games they can. Sometimes, that number is incredibly low, other times, 
+      it's surprising to see a team lose any games. 
+      A team's success is rooted in the management of the franchise, more specifically, how they spend their money. 
+      Here we begin our journey, select your team from the dropdown below.</p>
+    <div class="wrapper">
+        <div class="dropdown js-dropdown">
+          <a class="dropdown__header js-dropdown-toggler" href="javascript:;">
+            <span class="dropdown__title js-dropdown-title">Choose from dropdown</span>
+            <span class="dropdown__icon fa js-dropdown-icon"></span>
+          </a><!-- /dropdown__title -->
+      
+          <div class="dropdown__container">
+            <ul class="list">
+              <li class="list__item">
+                <a class="list__link list__link_vk js-dropdown-choice" href="javascript:;" data-mode="ATL">Atlanta Hawks</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_fb js-dropdown-choice" href="javascript:;" data-mode="BOS">Boston Celtics</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_li js-dropdown-choice" href="javascript:;" data-mode="BRK">Brooklyn Nets</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_tw js-dropdown-choice" href="javascript:;" data-mode="CHO">Charlotte Hornets</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="CHI">Chicago Bulls</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="CLE">Cleveland Cavaliers</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="DET">Detroit Pistons</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="IND">Indiana Pacers</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="MIA">Miami Heat</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="MIL">Milwaukee Bucks</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="NYK">New York Knicks</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="ORL">Orlando Magic</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="PHI">Philadelphia 76ers</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="TOR">Toronto Raptors</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="WSH">Washington Wizards</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="DAL">Dallas Mavericks</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="DEN">Denver Nuggets</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="GSW">Golden State Warriors</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="HOU">Houston Rockets</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="LAC">Los Angeles Clippers</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="LAL">Los Angeles Lakers</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="MEM">Memphis Grizzlies</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="MIN">Minnesota Timberwolves</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="NOP">New Orleans Pelicans</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="OKC">Oklahoma City Thunder</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="PHO">Phoenix Suns</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="SAC">Sacramento Kings</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="SAS">San Antonio Spurs</a>
+              </li><!-- /list__item -->
+              <li class="list__item">
+                <a class="list__link list__link_gp js-dropdown-choice" href="javascript:;" data-mode="UTA">Utah Jazz</a>
+              </li><!-- /list__item -->
+            </ul><!-- /list -->
+          </div><!-- /dropdown__container -->
+        </div><!-- /dropdown -->
+      </div><!-- /wrapper -->
+
+    <div class="content">
+        <div id="team-scrolly">
+          <div class="text-container">
+            <p id="team-story" class="step" data-index="0"></p>
+            <p id="team-story2" class="step" data-index="1"></p>
+            <p id="league-story" class="step" data-index="1">
+              A wholistic view of league spending shows several trends. 
+              One such trend is the persistence of star players on every team.
+              Certain players emerge as targets for teams to blow an absolute bag to retain.
+              The Golden State Warriors spent the most in the league on their way to win the 2022 Championship while boasting the third highest 
+              win percentage in the league. 
+            </p>
+            <p class = "step" data-index="2">
+              Now if we dive into individual player salaries, we can see a trend amongst the lower win percetange teams. 
+              The teams below .500 typically only have a single player getting paid above $30m, except the Lakers, but that's another story.
+              These teams don't have the salary cap to get better players, therefore they can't win games, this isn't breaking news. Surprisingly,
+              the Lakers have 3 players making $45m+ and still failed to get above .500 or make the playoffs. 
+            </p>
+            <p id = "bottom-paragraph" class="step" data-index = "3">
+              Most of the issues with team's success can be broken down into how each team spends their total money. Star players have a big impact
+              but also can't carry a team of bums to the playoffs. Portland for example spends about 30% of their salary cap on Damian Lillard, who 
+              has a great impact on the game, but can be stopped by a bad shooting night or good defense. Here you can explore a breakdown of each team's 
+              salary distribution.
+            </p>
+          </div>
+          <figure class="sticky">
+            <img id="pie-chart" class="team-scrolly-item scrolly-side sticky" >
+            <div id = "chart1" class="flourish-embed flourish-scatter sticky" data-src="visualisation/11525155"><script src="https://public.flourish.studio/resources/embed.js"></script></div>
+            <div id = "chart2" class="flourish-embed flourish-bubble" data-src="visualisation/11499505"><script src="https://public.flourish.studio/resources/embed.js"></script></div>
+            <div id="chart3" class="flourish-embed flourish-chart" data-src="visualisation/11500801"><script src="https://public.flourish.studio/resources/embed.js"></script></div>
+          </figure>
+        </div><!--team scrolly-->
+
+        <h3 class="methods">Method</h3>
+        <p class="methods">All data is from <a href="https://www.basketball-reference.com/leagues/NBA_2022.html">basketball reference</a> and 
+          <a href = "https://hoopshype.com/salaries/portland_trail_blazers/2021-2022/">
+            HoopsHype.
+        </a>
+      I used <a href = "flourish.studio">Flourish</a> to make the data visualisations.</p>
+      <a href="#top">Back to top</a>
+      </div><!--content-->
+
+</body>
+</html>
