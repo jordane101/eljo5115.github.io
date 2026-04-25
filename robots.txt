@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Disallow: /legacyPage/
+
+Sitemap: https://elijordan.me/sitemap.xml

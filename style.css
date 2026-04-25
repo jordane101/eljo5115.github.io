@@ -248,7 +248,7 @@ body {
 	transition: transform 0.5s ease;
 }
 
-.card h2 {
+.card h3 {
 	font-size: 1.5rem;
 	margin-bottom: 0.75rem;
 	font-weight: 700;
