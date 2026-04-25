@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Strategy Trader Bot — HMM Regime Detection &amp; Causal ML on Equities | Eli Jordan</title>
+    <meta name="description" content="An algorithmic trading system that combines Hidden Markov Model regime detection with a quantile Granger causality DAG over 95 equities to drive multi-agent execution.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://elijordan.me/projects/strategy-trader/">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Strategy Trader Bot — HMM Regime Detection &amp; Causal ML on Equities">
+    <meta property="og:description" content="An algorithmic trading system that combines Hidden Markov Model regime detection with a quantile Granger causality DAG over 95 equities to drive multi-agent execution.">
+    <meta property="og:url" content="https://elijordan.me/projects/strategy-trader/">
+    <meta property="og:site_name" content="Eli Jordan">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Strategy Trader Bot — HMM Regime Detection &amp; Causal ML on Equities">
+    <meta name="twitter:description" content="An algorithmic trading system that combines Hidden Markov Model regime detection with a quantile Granger causality DAG over 95 equities to drive multi-agent execution.">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Strategy Trader Bot — HMM Regime Detection & Causal ML on Equities",
+      "description": "An algorithmic trading system that combines Hidden Markov Model regime detection with a quantile Granger causality DAG over 95 equities to drive multi-agent execution.",
+      "author": {
+        "@type": "Person",
+        "name": "Eli Jordan",
+        "url": "https://elijordan.me/"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Eli Jordan"
+      },
+      "mainEntityOfPage": "https://elijordan.me/projects/strategy-trader/"
+    }
+    </script>
+
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../project-page.css">
+</head>
+<body>
+
+    <div class="background">
+        <div class="gradient-blob"></div>
+        <div class="gradient-blob"></div>
+        <div class="gradient-blob"></div>
+    </div>
+
+    <main class="project-page">
+
+        <nav class="project-nav">
+            <a href="/" class="back-link">← Back to portfolio</a>
+        </nav>
+
+        <header class="project-header">
+            <h1>Strategy Trader Bot</h1>
+            <p class="project-tagline">An end-to-end algorithmic trading system that pairs Hidden Markov Model regime detection with a causality DAG of 95 equities, executes through a multi-agent orchestrator, and runs as a production systemd service against the Alpaca API.</p>
+
+            <ul class="project-tags">
+                <li>Python</li>
+                <li>Hidden Markov Models</li>
+                <li>Granger Causality</li>
+                <li>vectorbt</li>
+                <li>Alpaca API</li>
+                <li>Multi-agent</li>
+            </ul>
+
+            <div class="project-actions">
+                <a href="https://github.com/jordane101/alpaca-predict" class="card-button" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            </div>
+        </header>
+
+        <article class="project-content">
+
+            <section>
+                <h2>Problem</h2>
+                <p>Most retail trading bots fall into one of two traps. They either fit a single signal — a moving-average crossover, a momentum factor, an RSI threshold — and assume the market behaves the same way every day, or they bolt a black-box ML model onto raw price data and learn correlations that fall apart the moment the regime changes.</p>
+                <p>Markets aren't stationary. The same signal that prints money in a low-vol uptrend gets shredded in a choppy, mean-reverting tape. I wanted to build a system that <strong>recognizes which regime it's in</strong> before deciding how to act, and that grounds its cross-asset signals in something stronger than pairwise correlation — which is famously fragile and direction-blind.</p>
+            </section>
+
+            <section>
+                <h2>Approach</h2>
+                <p>The system has three layers: a regime detector, a causal feature engine over the broader market, and a multi-agent execution layer that turns predictions into orders with conflict resolution and risk controls.</p>
+
+                <h3>Regime detection with a Hidden Markov Model</h3>
+                <p>An HMM fits hidden market states (roughly: trending up, trending down, choppy) to observed daily features. The model emits a posterior over the next day's state, which acts as a context switch — different strategies are unlocked or suppressed depending on which regime is most likely.</p>
+                <p>HMMs are a good fit here because they make the state-transition structure explicit and let you reason about regime persistence, not just point predictions. That's a property a black-box classifier doesn't give you for free.</p>
+
+                <h3>Market causality DAG via quantile Granger causality</h3>
+                <p>Pairwise correlation tells you two assets move together. It doesn't tell you which one moves <em>first</em>, and it collapses to noise in the tails — exactly the moments that matter for risk. Instead, the system builds a directed acyclic graph over 95 equities using <strong>quantile Granger causality</strong>, which tests whether asset A's tail moves predict asset B's tail moves over a chosen horizon.</p>
+                <p>The result is a sparse, directed graph of "who leads whom" in different market conditions. A causal feature engine then extracts DAG-based features (lagged tail drivers, fan-in centrality, regime-conditional edges) and feeds them into the downstream models. This gives the bot signal that survives the breakdown of correlation in stressed markets.</p>
+
+                <h3>Multi-agent orchestration</h3>
+                <p>Rather than collapsing every output into a single score, the system runs multiple strategy agents in parallel — each consuming the regime posterior and the DAG features — and resolves their disagreements through an orchestrator. Conflicts (e.g. one agent wants to enter long, another wants to flatten) are settled by confidence-weighted voting and risk-budget constraints. Each agent's logic is YAML-configurable, so adding or retiring a strategy doesn't require touching execution code.</p>
+
+                <h3>Backtesting and deployment</h3>
+                <p>Strategies are validated with <a href="https://vectorbt.dev/" target="_blank" rel="noopener noreferrer">vectorbt</a> before any capital — paper or otherwise — is committed. The full system runs as a systemd service with auto-restart, structured logging, and a websocket connection to Alpaca during market hours. Configuration (capital limits, per-strategy weights, risk caps) is YAML-driven so changes don't require redeploying code.</p>
+            </section>
+
+            <section>
+                <h2>Results</h2>
+                <p><em>Replace the placeholders below with your real backtest / paper-trading numbers. Keep the comparison honest — name the period, the universe, and the benchmark.</em></p>
+
+                <div class="metrics-grid">
+                    <div class="metric">
+                        <div class="metric-label">Sharpe (backtest)</div>
+                        <div class="metric-value">{{0.00}}</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Hit rate</div>
+                        <div class="metric-value">{{00%}}</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Max drawdown</div>
+                        <div class="metric-value">{{0%}}</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Universe</div>
+                        <div class="metric-value">95</div>
+                    </div>
+                </div>
+
+                <p>{{Period covered, benchmark used (e.g. SPY buy-and-hold), and a one-line takeaway. If the regime-aware version beat a single-strategy baseline, say so with the spread.}}</p>
+            </section>
+
+            <section>
+                <h2>What I'd Do Differently</h2>
+                <p>{{Honest reflection. A few angles to consider — pick whichever is true:}}</p>
+                <ul>
+                    <li>{{Survivorship bias in the 95-equity universe — how the selection was made and what it costs.}}</li>
+                    <li>{{HMM state count chosen by AIC/BIC vs. economic interpretability — what tradeoff you'd revisit.}}</li>
+                    <li>{{Granger causality assumes linearity in the conditional mean — quantile version helps but doesn't fix everything.}}</li>
+                    <li>{{Slippage / fee modeling in backtest vs. what live execution actually delivers.}}</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>What's Next</h2>
+                <ul>
+                    <li>{{e.g. Extending the causality engine to options-implied data}}</li>
+                    <li>{{e.g. Replacing the multi-agent voting with a learned meta-controller}}</li>
+                    <li>{{e.g. Live performance tracking dashboard}}</li>
+                </ul>
+            </section>
+
+        </article>
+
+        <footer class="project-footer">
+            <a href="/" class="back-link">← Back to portfolio</a>
+        </footer>
+
+    </main>
+
+</body>
+</html>
