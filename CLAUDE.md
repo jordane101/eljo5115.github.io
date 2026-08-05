@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Personal portfolio site for Eli Jordan (algorithmic trading & sports analytics), served by GitHub Pages at **https://elijordan.me** (custom domain via `CNAME`). Pure static HTML/CSS/vanilla JS — there is no build step, package manager, linter, or test suite. Whatever is committed to `main` is what deploys.
+Personal portfolio site for Eli Jordan (algorithmic trading & sports analytics), served by GitHub Pages at **https://elijordan.me** (custom domain via `CNAME`). Pure static HTML/CSS/vanilla JS — there is no build step, package manager, linter, or test suite.
+
+**Deploying:** the site is served from the `upstream` remote (`eljo5115/eljo5115.github.io`), NOT `origin` (the `jordane101` fork). Pushing only to `origin` deploys nothing. To ship: push `main` to **both** remotes, and `git fetch upstream` first — changes are sometimes committed directly to upstream, so the histories can diverge.
 
 ## Development
 
