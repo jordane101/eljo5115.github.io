@@ -4,56 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Index — Eli Jordan</title>
-    <meta name="description" content="A prediction market index that tracks a specific team throughout their season.">
-    <!-- Placeholder page: keep noindex until the real Team Index app ships, then add to /sitemap.xml -->
+    <meta name="description" content="A prediction market index that tracks a specific team throughout their season — pick your NBA, NFL, or MLB team and follow their index.">
+    <!-- Running on sample data: keep noindex until the backend ships, then add to /sitemap.xml -->
     <meta name="robots" content="noindex, follow">
     <link rel="canonical" href="https://elijordan.me/teamIndex/">
 
     <link rel="stylesheet" href="../style.css">
-    <style>
-        .placeholder-page {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .placeholder-page h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin: 0 0 1rem;
-            background: linear-gradient(to right, var(--color-text), rgba(255, 255, 255, 0.7));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .placeholder-page p {
-            font-size: 1.15rem;
-            opacity: 0.8;
-            max-width: 34rem;
-            margin: 0 0 2.5rem;
-        }
-
-        .placeholder-badge {
-            display: inline-block;
-            padding: 0.3rem 0.85rem;
-            background: rgba(0, 255, 135, 0.08);
-            border: 1px solid rgba(0, 255, 135, 0.25);
-            border-radius: 100px;
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: var(--color-primary);
-            letter-spacing: 0.02em;
-            margin-bottom: 1.5rem;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -63,12 +20,102 @@
         <div class="gradient-blob"></div>
     </div>
 
-    <main class="placeholder-page">
-        <span class="placeholder-badge">Coming soon</span>
-        <h1>Team Index</h1>
-        <p>A prediction market index that tracks a specific team throughout their season. Pick your team and follow their index through the year.</p>
-        <a href="/" class="card-button">← Back to portfolio</a>
+    <main class="ti-page">
+
+        <nav class="ti-nav">
+            <a href="/" class="ti-back">← Back to portfolio</a>
+            <span class="ti-banner">Sample data — backend in progress</span>
+        </nav>
+
+        <!-- View 1: league + team selection -->
+        <section id="selector-view">
+            <header class="ti-hero">
+                <h1>Team Index</h1>
+                <p>A prediction market index that tracks a specific team throughout their season. Find your team.</p>
+            </header>
+
+            <div class="ti-controls">
+                <div class="ti-tabs" id="league-tabs" role="group" aria-label="League"></div>
+                <input type="search" id="team-search" class="ti-search" placeholder="Search teams…" aria-label="Search teams">
+            </div>
+
+            <div id="team-grid"></div>
+        </section>
+
+        <!-- View 2: team fact sheet -->
+        <section id="team-view" hidden>
+            <div class="ti-team-header">
+                <div class="ti-team-title">
+                    <h1 id="team-name"></h1>
+                    <div class="ti-team-meta">
+                        <span class="ti-badge" id="team-league"></span>
+                        <span class="ti-record" id="team-record"></span>
+                        <span id="team-season-change"></span>
+                    </div>
+                </div>
+                <div class="ti-team-price">
+                    <div class="value" id="team-value">—</div>
+                    <div class="asof" id="team-asof"></div>
+                </div>
+            </div>
+
+            <div class="ti-panel ti-chart-wrap">
+                <div id="ti-legend" class="ti-legend"></div>
+                <div id="ti-chart"></div>
+            </div>
+
+            <div class="ti-tiles">
+                <div class="ti-tile">
+                    <div class="ti-tile-label">Current</div>
+                    <div class="ti-tile-value" id="tile-current">—</div>
+                </div>
+                <div class="ti-tile">
+                    <div class="ti-tile-label">Season change</div>
+                    <div class="ti-tile-value" id="tile-change">—</div>
+                </div>
+                <div class="ti-tile">
+                    <div class="ti-tile-label">Season high</div>
+                    <div class="ti-tile-value" id="tile-high">—</div>
+                </div>
+                <div class="ti-tile">
+                    <div class="ti-tile-label">Season low</div>
+                    <div class="ti-tile-value" id="tile-low">—</div>
+                </div>
+            </div>
+
+            <div class="ti-panel">
+                <h2>Index components</h2>
+                <div class="ti-table-wrap">
+                    <table class="ti-table" id="ti-components">
+                        <thead>
+                            <tr>
+                                <th>Market</th>
+                                <th>Weight</th>
+                                <th>Price</th>
+                                <th>Contribution</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <tr>
+                                <td>Index value</td>
+                                <td></td>
+                                <td></td>
+                                <td id="ti-components-total"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <p><a href="#" class="ti-back" id="back-to-selector">← Choose another team</a></p>
+        </section>
+
     </main>
 
+    <!-- Chart: TradingView Lightweight Charts™ v4 (Apache-2.0), vendored -->
+    <script src="vendor/lightweight-charts.standalone.production.js"></script>
+    <script src="teams.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

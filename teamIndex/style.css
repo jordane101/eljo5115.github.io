@@ -1,0 +1,432 @@
+/* Team Index page styles.
+   Inherits design tokens (--color-primary, --card-bg, etc.) from /style.css */
+
+:root {
+    --ti-loss: #ff5470;
+}
+
+.ti-page {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 2rem 2rem 4rem;
+    position: relative;
+    z-index: 1;
+}
+
+.ti-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* main.ti-page a.* selectors match the specificity of the root stylesheet's
+   generic link rule (main a:not(.card-button):not(.social-link)) so this
+   sheet, loaded later, wins the cascade. */
+main.ti-page a.ti-back {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0;
+    border-bottom: none;
+    transition: color 0.2s ease;
+}
+
+main.ti-page a.ti-back:hover {
+    color: var(--color-primary);
+    border-bottom: none;
+    transform: none;
+}
+
+/* Sample-data banner */
+.ti-banner {
+    display: inline-block;
+    padding: 0.3rem 0.85rem;
+    background: rgba(255, 196, 87, 0.08);
+    border: 1px solid rgba(255, 196, 87, 0.35);
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #ffc457;
+    letter-spacing: 0.02em;
+}
+
+/* --- Selector view --- */
+
+.ti-hero {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.ti-hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 0.75rem;
+    background: linear-gradient(to right, var(--color-text), rgba(255, 255, 255, 0.7));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.ti-hero p {
+    font-size: 1.15rem;
+    opacity: 0.8;
+    max-width: 36rem;
+    margin: 0 auto;
+}
+
+.ti-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+}
+
+.ti-tabs {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.ti-tab {
+    padding: 0.6rem 1.4rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 100px;
+    color: var(--color-text);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ti-tab:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.ti-tab.active {
+    background: rgba(0, 255, 135, 0.12);
+    border-color: rgba(0, 255, 135, 0.5);
+    color: var(--color-primary);
+}
+
+.ti-search {
+    padding: 0.6rem 1.2rem;
+    min-width: 240px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 100px;
+    color: var(--color-text);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.ti-search::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.ti-search:focus {
+    border-color: rgba(0, 255, 135, 0.5);
+}
+
+.ti-division {
+    margin-bottom: 1.75rem;
+}
+
+.ti-division h3 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.55;
+    margin: 0 0 0.6rem;
+    font-weight: 600;
+}
+
+.ti-chip-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.6rem;
+}
+
+main.ti-page a.ti-chip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+main.ti-page a.ti-chip:hover,
+main.ti-page a.ti-chip:focus-visible {
+    color: var(--color-text);
+    border: 1px solid rgba(0, 255, 135, 0.5);
+    background: rgba(0, 255, 135, 0.07);
+    transform: translateY(-2px);
+}
+
+.ti-chip-code {
+    font-family: 'SF Mono', 'Consolas', 'Menlo', monospace;
+    font-size: 0.75rem;
+    opacity: 0.55;
+}
+
+.ti-empty {
+    text-align: center;
+    opacity: 0.6;
+}
+
+/* --- Team view --- */
+
+.ti-team-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.ti-team-title h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 0.5rem;
+    background: linear-gradient(to right, var(--color-text), rgba(255, 255, 255, 0.7));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.ti-team-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.ti-badge {
+    padding: 0.2rem 0.7rem;
+    background: rgba(0, 255, 135, 0.08);
+    border: 1px solid rgba(0, 255, 135, 0.25);
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    letter-spacing: 0.02em;
+}
+
+.ti-record {
+    font-family: 'SF Mono', 'Consolas', 'Menlo', monospace;
+    font-size: 0.9rem;
+    opacity: 0.75;
+}
+
+.ti-team-price {
+    text-align: right;
+}
+
+.ti-team-price .value {
+    font-family: 'SF Mono', 'Consolas', 'Menlo', monospace;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1.1;
+}
+
+.ti-team-price .asof {
+    font-size: 0.78rem;
+    opacity: 0.55;
+}
+
+.up { color: var(--color-primary); }
+.down { color: var(--ti-loss); }
+
+/* Chart panel */
+.ti-panel {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--card-radius);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: var(--card-shadow);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.ti-chart-wrap {
+    position: relative;
+}
+
+#ti-chart {
+    width: 100%;
+    height: 420px;
+}
+
+#ti-chart.error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ti-loss);
+    font-size: 0.95rem;
+}
+
+.ti-legend {
+    position: absolute;
+    top: 0.25rem;
+    left: 0.25rem;
+    z-index: 2;
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+    pointer-events: none;
+    background: rgba(5, 5, 5, 0.55);
+    border-radius: 6px;
+    padding: 0.3rem 0.6rem;
+}
+
+.ti-legend-date { opacity: 0.6; }
+
+.ti-legend-value {
+    font-family: 'SF Mono', 'Consolas', 'Menlo', monospace;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.ti-legend-record {
+    font-family: 'SF Mono', 'Consolas', 'Menlo', monospace;
+    opacity: 0.75;
+}
+
+.ti-legend-game {
+    font-weight: 600;
+}
+
+/* Metric tiles */
+.ti-tiles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.ti-tile {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--card-radius);
+    padding: 1.1rem 1rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.ti-tile-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0.6;
+    margin-bottom: 0.4rem;
+}
+
+.ti-tile-value {
+    font-family: 'SF Mono', 'Consolas', 'Menlo', monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+/* Components table */
+.ti-panel h2 {
+    font-size: 1.15rem;
+    margin: 0 0 1rem;
+    font-weight: 700;
+}
+
+.ti-table-wrap {
+    overflow-x: auto;
+}
+
+.ti-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 480px;
+}
+
+.ti-table th,
+.ti-table td {
+    padding: 0.7rem 0.75rem;
+    text-align: left;
+    white-space: nowrap;
+    font-size: 0.9rem;
+}
+
+.ti-table th {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0.6;
+    font-weight: 600;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.ti-table td:not(:first-child),
+.ti-table th:not(:first-child) {
+    text-align: right;
+    font-family: 'SF Mono', 'Consolas', 'Menlo', monospace;
+}
+
+.ti-table tbody tr:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ti-table tfoot td {
+    border-top: 1px solid var(--card-border);
+    font-weight: 700;
+}
+
+/* --- Responsive --- */
+
+@media (max-width: 720px) {
+    .ti-page {
+        padding: 1.5rem 1.25rem 3rem;
+    }
+
+    .ti-hero h1 {
+        font-size: 2.25rem;
+    }
+
+    #ti-chart {
+        height: 300px;
+    }
+
+    .ti-tiles {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ti-team-price .value {
+        font-size: 2rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ti-chip,
+    .ti-tab,
+    .ti-back {
+        transition: none;
+    }
+}
