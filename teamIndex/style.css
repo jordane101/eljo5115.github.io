@@ -399,6 +399,22 @@ main.ti-page a.ti-chip:focus-visible {
     font-weight: 700;
 }
 
+/* Disclaimer */
+.ti-disclaimer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--card-border);
+}
+
+.ti-disclaimer p {
+    font-size: 0.78rem;
+    line-height: 1.6;
+    opacity: 0.5;
+    max-width: 44rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
 /* --- Responsive --- */
 
 @media (max-width: 720px) {
