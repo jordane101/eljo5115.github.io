@@ -14,10 +14,15 @@
     <meta property="og:description" content="An algorithmic trading system that combines Hidden Markov Model regime detection with a quantile Granger causality DAG over 95 equities to drive multi-agent execution.">
     <meta property="og:url" content="https://elijordan.me/projects/strategy-trader/">
     <meta property="og:site_name" content="Eli Jordan">
+    <meta property="og:image" content="https://elijordan.me/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Eli Jordan — Algorithmic Trading and Market Making">
 
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Strategy Trader Bot — HMM Regime Detection &amp; Causal ML on Equities">
     <meta name="twitter:description" content="An algorithmic trading system that combines Hidden Markov Model regime detection with a quantile Granger causality DAG over 95 equities to drive multi-agent execution.">
+    <meta name="twitter:image" content="https://elijordan.me/og-image.png">
 
     <script type="application/ld+json">
     {
@@ -37,6 +42,10 @@
       "mainEntityOfPage": "https://elijordan.me/projects/strategy-trader/"
     }
     </script>
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
     <link rel="stylesheet" href="../../style.css">
     <link rel="stylesheet" href="../project-page.css">
@@ -98,52 +107,6 @@
 
                 <h3>Backtesting and deployment</h3>
                 <p>Strategies are validated with <a href="https://vectorbt.dev/" target="_blank" rel="noopener noreferrer">vectorbt</a> before any capital — paper or otherwise — is committed. The full system runs as a systemd service with auto-restart, structured logging, and a websocket connection to Alpaca during market hours. Configuration (capital limits, per-strategy weights, risk caps) is YAML-driven so changes don't require redeploying code.</p>
-            </section>
-
-            <section>
-                <h2>Results</h2>
-                <p><em>Replace the placeholders below with your real backtest / paper-trading numbers. Keep the comparison honest — name the period, the universe, and the benchmark.</em></p>
-
-                <div class="metrics-grid">
-                    <div class="metric">
-                        <div class="metric-label">Sharpe (backtest)</div>
-                        <div class="metric-value">{{0.00}}</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">Hit rate</div>
-                        <div class="metric-value">{{00%}}</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">Max drawdown</div>
-                        <div class="metric-value">{{0%}}</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">Universe</div>
-                        <div class="metric-value">95</div>
-                    </div>
-                </div>
-
-                <p>{{Period covered, benchmark used (e.g. SPY buy-and-hold), and a one-line takeaway. If the regime-aware version beat a single-strategy baseline, say so with the spread.}}</p>
-            </section>
-
-            <section>
-                <h2>What I'd Do Differently</h2>
-                <p>{{Honest reflection. A few angles to consider — pick whichever is true:}}</p>
-                <ul>
-                    <li>{{Survivorship bias in the 95-equity universe — how the selection was made and what it costs.}}</li>
-                    <li>{{HMM state count chosen by AIC/BIC vs. economic interpretability — what tradeoff you'd revisit.}}</li>
-                    <li>{{Granger causality assumes linearity in the conditional mean — quantile version helps but doesn't fix everything.}}</li>
-                    <li>{{Slippage / fee modeling in backtest vs. what live execution actually delivers.}}</li>
-                </ul>
-            </section>
-
-            <section>
-                <h2>What's Next</h2>
-                <ul>
-                    <li>{{e.g. Extending the causality engine to options-implied data}}</li>
-                    <li>{{e.g. Replacing the multi-agent voting with a learned meta-controller}}</li>
-                    <li>{{e.g. Live performance tracking dashboard}}</li>
-                </ul>
             </section>
 
         </article>

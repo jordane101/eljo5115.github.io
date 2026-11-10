@@ -1,0 +1,9 @@
+# GitHub Pages builds this repo with Jekyll (legacy build). The site itself is
+# plain static HTML; this file only keeps repo docs and editor files out of the
+# published site. Don't add a .nojekyll file: it would disable these excludes.
+exclude:
+  - docs/superpowers
+  - README.md
+  - CLAUDE.md
+  - .idea
+  - .vscode

@@ -22,7 +22,7 @@ python3 -m http.server 5501
 
 - **Root (`index.html`, `style.css`, `script.js`)** — the homepage. `script.js` drives two things: the SVG stock-graph intro animation (skipped on repeat views via `sessionStorage`, skippable by click) and the 3D-tilt project cards. (A "Portfolio Holdings" section that fetched live positions from `api.dozencrust.com` was removed in Aug 2026 — don't reintroduce it.)
 - **`projects/`** — long-form project write-up pages, one folder per project at `/projects/<slug>/index.html`. They reuse the root `style.css` (gradient background, buttons) plus the shared `projects/project-page.css`.
-- **`sportsModel/`** — a multi-page NFL betting app (index, ev-bets, parlays, props, bet-calculator). Each page has its own paired `*-script.js` / `*-style.css`. Data comes from the `https://api.dozencrust.com/sports/nfl` backend (see `sportsModel/PROP_API.md` for the props API shape). The backend lives in a separate repo — only the frontend is here. The homepage card for this project ("Edge Alert") now points to the external https://edgealert.app instead of these pages.
+- **`sportsModel/`** — a multi-page NFL betting app (index, ev-bets, parlays, props, bet-calculator). Each page has its own paired `*-script.js` / `*-style.css`. Data comes from the `https://api.dozencrust.com/sports/nfl` backend (see `sportsModel/PROP_API.md` for the props API shape). The backend lives in a separate repo — only the frontend is here. The homepage card for this project ("Edge Alert") now points to the external https://edgealert.app instead of these pages. Since Nov 2026 the pages are retired: each shows a notice, meta-refreshes to edgealert.app, is noindex, and is out of sitemap.xml. Keep the files for history; don't revive them.
 - **`dataStory/`** — NBA salary data story (self-contained HTML/CSS/JS + `teamData.json`, with embedded Flourish charts).
 - **`legacyPage/`** — an old version of the site, kept for reference and not linked from anywhere. Don't extend it.
 - The various `*_UPDATE.md` / `*_IMPLEMENTATION.md` files at the root and in `sportsModel/` are historical feature-change notes, not living documentation.
@@ -37,6 +37,10 @@ python3 -m http.server 5501
 
 Projects that are just a GitHub link (no write-up) get only a homepage card whose button points at the repo.
 
+## Publishing
+
+GitHub Pages builds this repo with Jekyll (legacy build). `_config.yml` excludes repo docs (`docs/superpowers`, `README.md`, `CLAUDE.md`) from the published site. Do not add `.nojekyll`; it would disable those excludes and also publish `projects/_template/`.
+
 ## SEO conventions
 
-Every indexable page carries: `<title>` ending in "— Eli Jordan", meta description, `<link rel="canonical">` (absolute `https://elijordan.me/...` URL), OG + Twitter tags, and a JSON-LD block (`Person` on the homepage, `Article` on project pages). Keep `sitemap.xml` in sync whenever pages are added, removed, or meaningfully updated.
+Every indexable page carries: favicon links (`/favicon.svg`, `/favicon-32.png`, `/apple-touch-icon.png`), `<title>` ending in "— Eli Jordan", meta description, `<link rel="canonical">` (absolute `https://elijordan.me/...` URL), OG + Twitter tags (including `og:image` / `twitter:image` = `https://elijordan.me/og-image.png` and `twitter:card` = `summary_large_image`), and a JSON-LD block (`Person` on the homepage, `Article` on project pages). Keep `sitemap.xml` in sync whenever pages are added, removed, or meaningfully updated.
