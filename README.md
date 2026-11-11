@@ -8,11 +8,11 @@ It is plain static HTML, CSS, and vanilla JavaScript. There is no build step, pa
 
 | Path | What it is |
 | --- | --- |
-| `index.html`, `style.css`, `script.js` | Homepage: intro stock-graph animation and the project cards |
+| `index.html`, `style.css`, `script.js` | Homepage: intro stock-graph animation, About section, and the project cards |
 | `projects/<slug>/` | Long-form project write-ups (shared styles in `projects/project-page.css`; start new ones from `projects/_template/`) |
 | `dataStory/` | "Is the NBA Pay to Win?" NBA salary data story |
-| `teamIndex/` | Team Index prediction-market index (sample data; `noindex` until its backend ships) |
-| `sportsModel/` | Archived NFL betting model frontend. Retired in favour of [edgealert.app](https://edgealert.app); each page shows a notice and redirects there |
+| `teamIndex/` | Archived Team Index frontend. Team Index now lives at [gyrfalcon.trading](https://gyrfalcon.trading); the page shows a notice and redirects there immediately |
+| `sportsModel/` | Archived NFL betting model frontend. Retired in favour of [edgealert.app](https://edgealert.app); each page shows a notice and redirects there immediately |
 | `legacyPage/` | Old version of the site, kept for reference and not linked |
 | `favicon.svg`, `favicon.ico`, `favicon-32.png`, `apple-touch-icon.png`, `og-image.png` | Site icons and the Open Graph share image |
 | `sitemap.xml`, `robots.txt`, `CNAME` | SEO files and the custom domain |
